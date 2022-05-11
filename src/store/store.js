@@ -1,5 +1,10 @@
-//import { configureStore } from '@reduxjs/toolkit'; 
+import { configureStore } from '@reduxjs/toolkit'; 
 
-//const store = configureStore({}); 
+const store = configureStore({
+    // react toolkit separer les states en gros blocs
+    reducer:{
 
-//export default store
+    }
+}); 
+
+export default store
