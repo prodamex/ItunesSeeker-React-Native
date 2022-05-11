@@ -17,6 +17,6 @@ const style = Stylesheet.create({
         margin: 10,
     },
     title: {
-        textAlign
+        textAlign : "center"
     }
 })
