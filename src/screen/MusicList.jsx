@@ -32,7 +32,10 @@ export default function ListeMusic() {
       <SafeAreaView>
           <ScrollView>
               {contentData.results && contentData.results.map((item, index) => (
-             <Card title={item.collectionName} artist={item.artistName} image={item.artworkUrl100} key={index} /> 
+             return(
+                <Card content={item} title={item.collectionName} artist={item.artistName} image={item.artworkUrl100} key={index} /> 
+
+             )
               ))}
           </ScrollView>
       </SafeAreaView>
