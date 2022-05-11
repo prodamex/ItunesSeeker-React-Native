@@ -1,16 +1,15 @@
 import React from 'react'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import ListeMusic from '../../screen/MusicList';
+import { createStackNavigator } from '@react-navigation/stack';
+import MusicList from '../../screen/MusicList';
 import AddAvis from '../../screen/addAvis';
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 export default function Searchnavigation() {
   return (
     <Stack.Navigator>
-        <Stack.Screen name="MusicList" component={ListeMusic} />
-        <Stack.Screen name="avis" component={AddAvis} />
+        <Stack.Screen name="list_music" component={MusicList} />
+        <Stack.Screen name="add_avis" component={AddAvis} />
     </Stack.Navigator>
   )
 }

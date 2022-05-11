@@ -3,10 +3,12 @@ import React, {useState, useEffect} from 'react'
 import Card from '../components/card'
 import { findByTitle } from '../service/search';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
 
 export default function ListeMusic() {
     const [searchTitle, setSearchTitle] = useState("");
     const [contentData, setContentData] = useState({})
+    const navigation = useNavigation();
 
     useEffect(() => {
         if (searchTitle.length <= 3) 
@@ -25,23 +27,28 @@ export default function ListeMusic() {
 
 
 
-  return (
-      <ScrollView>
-    <View style={styles.mainView}>
-      <TextInput placeholder="Chercher un morceau de musique.." style={styles.TextInput} onChangeText={value => setSearchTitle(value)} value={searchTitle}/>
-      <SafeAreaView>
-          <ScrollView>
-              {contentData.results && contentData.results.map((item, index) => (
-             return(
-                <Card content={item} title={item.collectionName} artist={item.artistName} image={item.artworkUrl100} key={index} /> 
+    return (
+        <View>
+          <TextInput onChangeText={value => setSearchTitle(value)} value={searchTitle}/>
+          <SafeAreaView>
+              <ScrollView>
+                  {contentData.results && contentData.results.map((item, index) => {
+                      const handler = () =>{
+                        navigation.navigate('add_avis', {titre: item.collectionName, artworkUrl100: item.artworkUrl100})
+                        
+                      }
+    
+                      return(
+                        <Card content={item} title={item.collectionName} artist={item.artistName} image={item.artworkUrl100} key={index} handler={handler} />
+                  )})}
+              </ScrollView>
+          </SafeAreaView>
+        </View>
+      )
 
-             )
-              ))}
-          </ScrollView>
-      </SafeAreaView>
-    </View>
-    </ScrollView>
-  )
+
+
+  
  }
   const styles = StyleSheet.create({
     TextInput:{

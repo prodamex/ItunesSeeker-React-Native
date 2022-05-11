@@ -2,9 +2,11 @@ import React from 'react'
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 
-export default function card({title, artist, image}) {
-
+export default function card({title, artist, image, handler}) {
+    
+    console.log(handler)
   return (
+      
     <TouchableOpacity onPress={handler}>
     <View style={styles.postView}>
         <View style={styles.postTitle}>
