@@ -1,17 +1,17 @@
 import React from 'react'
-import { View, Text, Stylesheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 
 export default function card({title}) {
   return (
-    <View>
-        <Text>{title}</Text>
+    <View style={styles.container}>
+        <Text style={styles.title}>{title}</Text>
     </View>
   )
 }
 
-const style = Stylesheet.create({
-    container: {
+const styles = StyleSheet.create({
+        container: {
         height: "10%",
         width: " 100%",
         margin: 10,
