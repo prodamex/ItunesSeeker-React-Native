@@ -1,16 +1,23 @@
 import { View, Text, TextInput, StyleSheet, Image } from 'react-native'
 import React, {useState} from 'react'
 import NoteEtoiles from '../components/noteEtoiles'
+import Boutton from '../components/boutton';
 import { useRoute } from '@react-navigation/native';
+import {setAvis} from '../store/reducer/avis.reducer'
+import { useDispatch } from 'react-redux';
+
+
 
 export default function AddAvis() {
     const route = useRoute();
+    const dispatch = useDispatch();
     console.log(route)
+    
 
-    const [avis, setAvis] = useState({title: route.params.titre, description: "", note: 0, imageUrl: route.params.artworkUrl100 })
+    const [newAvis, setNewAvis] = useState({title: route.params.titre, description: "", note: 0, imageUrl: route.params.artworkUrl100 })
 
     const changeAvisTitle = (value) =>{
-        setAvis(currentState => {
+        setNewAvis(currentState => {
             return {
                 ...currentState,
                 title: value,
@@ -19,7 +26,7 @@ export default function AddAvis() {
     }
 
     const changeAvisDescription = (value) =>{
-        setAvis(currentState => {
+        setNewAvis(currentState => {
             return {
                 ...currentState,
                 description: value,
@@ -28,12 +35,16 @@ export default function AddAvis() {
     }
 
     const changeAvisNote= (value) =>{
-        setAvis(currentState => {
+        setNewAvis(currentState => {
             return {
                 ...currentState,
                 note: value,
             }
         })
+    }
+
+    const save = () => {
+        dispatch(setAvis(newAvis));
     }
 
     
@@ -43,14 +54,14 @@ export default function AddAvis() {
     return (
     <View>
       <Text>donner voter avis</Text>
-      <TextInput style={style.TextInput} onChangeText={changeAvisTitle} value={avis.title}/>
-      <TextInput style={style.TextInput} onChangeText={changeAvisDescription} value={avis.description}/>
+      <TextInput style={style.TextInput} onChangeText={changeAvisTitle} value={newAvis.title}/>
+      <TextInput style={style.TextInput} onChangeText={changeAvisDescription} value={newAvis.description}/>
       <Image style={style.artistPhoto} source={{
-          uri: avis.imageUrl,
+          uri: newAvis.imageUrl,
         }}/>
 
-      <NoteEtoiles note={avis.note} noteMax={5} setNote={changeAvisNote} />
-      <Boutton item={() => {}}/>
+      <NoteEtoiles note={newAvis.note} noteMax={5} setNote={changeAvisNote} />
+      <Boutton item={<Text>save</Text>} onPress={save}/>
     </View>
   )
 }

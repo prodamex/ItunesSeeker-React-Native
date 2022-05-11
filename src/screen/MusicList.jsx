@@ -1,15 +1,22 @@
-import { View, TextInput, ScrollView, StyleSheet} from 'react-native'
+import { Text, View, TextInput, ScrollView, StyleSheet} from 'react-native'
 import React, {useState, useEffect} from 'react'
 import Card from '../components/card'
 import { findByTitle } from '../service/search';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
+import Boutton from '../components/boutton';
+import { useSelector } from 'react-redux';
+import { avisSelector, notesSelector } from '../store/selector/avis.selector';
+
 
 export default function ListeMusic() {
     const [searchTitle, setSearchTitle] = useState("");
     const [contentData, setContentData] = useState({})
     const navigation = useNavigation();
+    const content = useSelector(avisSelector);
+    const notes = useSelector(notesSelector);
 
+    
     useEffect(() => {
         if (searchTitle.length <= 3) 
         return;
@@ -31,6 +38,8 @@ export default function ListeMusic() {
         <View>
           <TextInput onChangeText={value => setSearchTitle(value)} value={searchTitle}/>
           <SafeAreaView>
+          <Boutton onPress={()=> console.log(notes)}
+ item={<Text>Afficher liste</Text>}/>
               <ScrollView>
                   {contentData.results && contentData.results.map((item, index) => {
                       const handler = () =>{
@@ -43,6 +52,7 @@ export default function ListeMusic() {
                   )})}
               </ScrollView>
           </SafeAreaView>
+          
         </View>
       )
 

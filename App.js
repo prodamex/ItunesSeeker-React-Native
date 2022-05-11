@@ -6,10 +6,10 @@ import Navigation from './src/navigation'
 
 export default function App() {
   return (
-      //<Provider store={store}>
+      <Provider store={store}>
           <NavigationContainer>
          <Navigation/>
          </NavigationContainer>
-       // </Provider>
+        </Provider>
     );
 }

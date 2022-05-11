@@ -12,20 +12,20 @@ const avisSlice = createSlice({
     initialState,
     reducers: {
         setAvis: (state, action) => {
-
             let noteGlobal = 0;
+
             state.notes.forEach(item => {
                 noteGlobal += item.note
             });
 
-            noteGlobal += action.payload.note
+            noteGlobal += action.payload.note;
+            noteGlobal /= state.notes.length + 1;
 
-            noteGlobal /= state.notes.length +1;
             return {
-                ...state,
-                notes: [...state.notes, ...action.payload],
-                nbAvis: state.nbAvis + 1,
-                noteGlobal,
+               ...state,
+               notes: [...state.notes, action.payload],
+               nbAvis: state.nbAvis + 1,
+               noteGlobal,
             }
 
         }
@@ -33,4 +33,4 @@ const avisSlice = createSlice({
 });
 
 export const {setAvis} = avisSlice.actions;
-export default avisSlice;
+export default avisSlice.reducer;
