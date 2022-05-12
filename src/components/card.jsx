@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         marginTop:20,
     },
     artistPhoto:{
-        backgroundColor:'rgba (0,0,0,0.06)',
+        backgroundColor:'#0000000f',
          width:50,
          height:50,
          borderRadius:50,

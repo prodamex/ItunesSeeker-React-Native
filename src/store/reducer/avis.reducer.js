@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {
     notes: [],
+    currentAvis:{},
     nbAvis: 0,
     noteGlobal: 0,
 }
@@ -28,9 +29,18 @@ const avisSlice = createSlice({
                noteGlobal,
             }
 
+        },
+        setCurrentAvis: (state, action) => {
+            console.log(action)
+            return {
+                ...state,
+                currentAvis: action.payload
+            
+            }
+            
         }
     }
 });
 
-export const {setAvis} = avisSlice.actions;
+export const {setAvis, setCurrentAvis} = avisSlice.actions;
 export default avisSlice.reducer;

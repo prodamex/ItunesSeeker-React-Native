@@ -1,54 +1,40 @@
-import {  View, TextInput, ScrollView, StyleSheet} from 'react-native'
+import { Text, View, TextInput, ScrollView, StyleSheet} from 'react-native'
 import React, {useState, useEffect} from 'react'
 import Card from '../components/card'
 import { findByTitle } from '../service/search';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import Boutton from '../components/boutton';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { avisSelector, notesSelector } from '../store/selector/avis.selector';
+import { setCurrentAvis } from '../store/reducer/avis.reducer';
 
 
-export default function ListeMusic() {
+export default function ListAvis() {
     const [searchTitle, setSearchTitle] = useState("");
-    const [contentData, setContentData] = useState({})
+    const [contentData, setContentData] = useState([]);
     const navigation = useNavigation();
-    const content = useSelector(avisSelector);
     const notes = useSelector(notesSelector);
-
-    
-    useEffect(() => {
-        if (searchTitle.length <= 3) 
-        return;
-        
-        findByTitle(searchTitle).then(data =>{
-            if(data){
-                console.log("**data**")
-                console.log(data)
-
-                setContentData(data)
-            }
-        }).catch(err => console.error(err))
-        console.log(contentData)
-    }, [searchTitle])
-
+    const data = useSelector(notesSelector);
+    const dispatch = useDispatch();
 
 
     return (
         <View>
           <TextInput style={styles.TextInput} onChangeText={value => setSearchTitle(value)} value={searchTitle}/>
-          
+      <Boutton onPress={()=> console.log(notes)} item={<Text>Afficher liste</Text>}/>
           <SafeAreaView>
           
               <ScrollView>
-                  {contentData.results && contentData.results.map((item, index) => {
+                  {data && data.map((item, index) => {
                       const handler = () =>{
-                        navigation.navigate('add_avis', {titre: item.collectionName, artworkUrl100: item.artworkUrl100})
+                        dispatch(setCurrentAvis(item))
+                        navigation.navigate('avis_show')
                         
                       }
     
                       return(
-                        <Card content={item} title={item.collectionName} artist={item.artistName} image={item.artworkUrl100} key={index} handler={handler} />
+                        <Card content={item} title={item.title} artist={item.artistName} image={item.imageUrl} note={item.note} key={index} handler={handler} />
                   )})}
               </ScrollView>
           </SafeAreaView>
