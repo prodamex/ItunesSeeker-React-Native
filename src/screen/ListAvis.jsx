@@ -21,15 +21,13 @@ export default function ListAvis() {
 
     return (
         <View>
-          <TextInput style={styles.TextInput} onChangeText={value => setSearchTitle(value)} value={searchTitle}/>
-      <Boutton onPress={()=> console.log(notes)} item={<Text>Afficher liste</Text>}/>
           <SafeAreaView>
           
               <ScrollView>
                   {data && data.map((item, index) => {
                       const handler = () =>{
                         dispatch(setCurrentAvis(item))
-                        navigation.navigate('avis_show')
+                        navigation.navigate('Infos music')
                         
                       }
     
@@ -53,7 +51,7 @@ export default function ListAvis() {
         backgroundColor: '#EBEBEB',
         borderRadius:20,
         marginTop:15,
-        paddingLeft:15
+        marginLeft:20
     },
     mainView:{
         flex:1,

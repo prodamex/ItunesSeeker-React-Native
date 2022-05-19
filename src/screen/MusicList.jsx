@@ -1,4 +1,4 @@
-import {  View, TextInput, ScrollView, StyleSheet} from 'react-native'
+import {  Text, View, TextInput, ScrollView, StyleSheet} from 'react-native'
 import React, {useState, useEffect} from 'react'
 import Card from '../components/card'
 import { findByTitle } from '../service/search';
@@ -36,6 +36,8 @@ export default function ListeMusic() {
 
     return (
         <View>
+                  <Text style={styles.titre}>Rechercher une musique </Text>
+
           <TextInput style={styles.TextInput} onChangeText={value => setSearchTitle(value)} value={searchTitle}/>
           
           <SafeAreaView>
@@ -43,7 +45,7 @@ export default function ListeMusic() {
               <ScrollView>
                   {contentData.results && contentData.results.map((item, index) => {
                       const handler = () =>{
-                        navigation.navigate('add_avis', {titre: item.collectionName, artworkUrl100: item.artworkUrl100})
+                        navigation.navigate('Ajouter la musique', {titre: item.collectionName, artworkUrl100: item.artworkUrl100})
                         
                       }
     
@@ -73,7 +75,10 @@ export default function ListeMusic() {
         flex:1,
         alignItems:'center'
     },
-    
+    titre:{
+        marginTop:30,
+       textAlign: "center",
+       fontSize: 18, },
 
 })
 
