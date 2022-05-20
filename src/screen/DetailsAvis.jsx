@@ -13,10 +13,11 @@ export default function DetailsAvis() {
   return (
     <View>
       <Text style={styles.titre}>{currentAvis.title}</Text>
-        <Text>{currentAvis.description}</Text>
-        <View style={styles.photo}>
+      <View style={styles.photo}>
         <Image style={styles.artistPhoto} source={{uri:currentAvis.imageUrl}}></Image>
         </View>
+        <Text style={styles.description}>{currentAvis.description}</Text>
+        
       
 <Rating
   showRating
@@ -44,8 +45,12 @@ const styles = StyleSheet.create({
        marginTop:30,
       textAlign: "center",
       fontSize: 30,
-      
-
+     },
+     description:{
+       marginTop:20,
+       textAlign:"center",
+       marginEnd:40
+       
      }
 
 })
