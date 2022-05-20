@@ -1,6 +1,5 @@
 import { View, Text, TextInput, StyleSheet, Image } from 'react-native'
 import React, {useState} from 'react'
-import NoteEtoiles from '../components/noteEtoiles'
 import Boutton from '../components/boutton';
 import { useRoute } from '@react-navigation/native';
 import {setAvis} from '../store/reducer/avis.reducer'
@@ -65,7 +64,6 @@ export default function AddAvis() {
       </View>
      
 
-     {/* <NoteEtoiles note={newAvis.note} noteMax={5} setNote={changeAvisNote} /> */} 
       <Rating
   showRating
   onFinishRating={changeAvisNote}

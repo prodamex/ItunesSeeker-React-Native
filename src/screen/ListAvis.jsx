@@ -21,6 +21,7 @@ export default function ListAvis() {
 
     return (
         <View>
+          <Text style={styles.titre}>Mes favoris :</Text>
           <SafeAreaView>
           
               <ScrollView>
@@ -56,6 +57,11 @@ export default function ListAvis() {
     mainView:{
         flex:1,
         alignItems:'center'
+    },
+    titre:{
+      marginTop:30,
+     textAlign: "center",
+     fontSize: 30,
     },
     
 
