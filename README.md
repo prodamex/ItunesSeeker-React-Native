@@ -11,4 +11,4 @@ Fonctionnalités développé :<br><br>
 ✅  Une vue permettant d’afficher les music recherchés (MusicList)<br>
   -> ✅  Afficher la musique séléctionner / système de notation (addAvis) <br><br>
 ✅  Une vue de musics ajoutés à la bibliothèque (ListAvis) <br><br>
-✅  Une vue pour voir les details de la musique ajouté
+✅  Une vue pour voir les details de la musique ajouté (DetailsAvis)
